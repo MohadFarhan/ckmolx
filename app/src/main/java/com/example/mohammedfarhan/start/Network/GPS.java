@@ -1,16 +1,11 @@
-package Network;
+package com.example.mohammedfarhan.start.Network;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
-
-import com.example.mohammedfarhan.start.MainActivity;
 
 /**
  * Created by Mohammed Farhan on 21-07-2017.

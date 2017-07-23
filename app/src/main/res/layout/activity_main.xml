@@ -6,29 +6,124 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    tools:context="com.example.mohammedfarhan.start.MainActivity">
+    tools:context="com.example.mohammedfarhan.start.Activities.MainActivity">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
 
-        <EditText
+        <TextView
+            android:id="@+id/locationTV"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/locationSearchEDT"
-            android:background="@color/white"
-            />
-        <ImageView
-            android:layout_width="wrap_content"
+            tools:text="Your location"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_gps"
-            android:layout_centerHorizontal="true"
-            android:layout_centerInParent="true"
-            android:layout_marginEnd="10dp"
-            android:id="@+id/gpsLocationIMV"
-            android:layout_alignEnd="@id/locationSearchEDT"
-            />
-    </RelativeLayout>
+            android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical"
+                    android:background="@color/colorPrimaryDark">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mobiles"
+                            android:id="@+id/mobileCategory"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:layout_gravity="left"
+                            android:paddingLeft="10dp"
+                            android:textStyle="bold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="more"
+                            android:id="@+id/moreMobileCategory"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:layout_alignParentRight="true"
+                            android:paddingRight="10dp"
+                            android:textStyle="bold"/>
+                    </RelativeLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/mobilesrv"/>
+                </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:background="@color/colorPrimaryDark">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Two wheelers"
+                        android:id="@+id/twoWheelersCategory"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_gravity="left"
+                        android:paddingLeft="10dp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="more"
+                        android:id="@+id/moreTwoWheelerseCategory"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="10dp"
+                        android:textStyle="bold"/>
+                </RelativeLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/twoWheelersrv"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!--  <android.support.v7.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/rv"/>-->
 </LinearLayout>
