@@ -18,5 +18,6 @@
         android:layout_gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="You need to enable GPS Location."/>
+        android:textAlignment="center"
+        android:text="GPS is off. You need to enable GPS Location."/>
 </LinearLayout>
