@@ -19,6 +19,7 @@ import com.example.mohammedfarhan.start.DAO.TwoWheelerDAO;
 import com.example.mohammedfarhan.start.Domains.Data;
 import com.example.mohammedfarhan.start.Domains.TwoWheeler;
 import com.example.mohammedfarhan.start.R;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
     String road;
     LinearLayoutManager mLayoutManager;
 
+    MaterialSpinner materialSpinner;
     public final int MY_PERMISSIONS_REQUEST_LOCATION_GPS = 1;
+
+    String selectedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
         mobileRecyclerView = (RecyclerView) findViewById(R.id.mobilesrv);
         mobileRecyclerView.setHasFixedSize(true);
-        mobileRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
+        mobileRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        mobileRecyclerView.smoothScrollToPosition(1);
         mobileRecyclerView.setAdapter(dataAdapter);
 
 
@@ -63,8 +68,11 @@ public class MainActivity extends AppCompatActivity {
         twoWheelerAdapter=new TwoWheelerAdapter(MainActivity.this,mtwowheeler);
         twoWheelersRecylerView=(RecyclerView)findViewById(R.id.twoWheelersrv);
         twoWheelersRecylerView.setHasFixedSize(true);
-        twoWheelersRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
+        twoWheelersRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         twoWheelersRecylerView.setAdapter(twoWheelerAdapter);
+
+        materialSpinner=(MaterialSpinner)findViewById(R.id.materialSpinner);
+        materialSpinner.setItems("Categories","All Categories","Mobiles","Cars","Two Wheelers","Four Wheelers");
 
     }
 }

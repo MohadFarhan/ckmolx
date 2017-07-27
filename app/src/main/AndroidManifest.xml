@@ -20,7 +20,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBRQ-_xvQ_c7Dg8DOKke75Ui4Krg8zFF7k" />
 
-        <activity android:name=".Activities.MainActivity"></activity>
+        <activity android:name=".Activities.MainActivity" />
         <activity
             android:name=".Activities.LoginActivity"
             android:theme="@style/AppTheme">
@@ -30,6 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.AdDetailsActivity"></activity>
     </application>
 
 </manifest>
