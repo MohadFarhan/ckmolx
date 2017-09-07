@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
         mobileSubmitBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this,AdDetailsActivity.class);
+                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
                 startActivity(intent);
 
             }

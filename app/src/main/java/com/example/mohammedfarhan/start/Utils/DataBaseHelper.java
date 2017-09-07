@@ -4,7 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.example.mohammedfarhan.start.Domains.TwoWheeler;
+import com.example.mohammedfarhan.start.Domains.laptop_domain.Laptop;
+import com.example.mohammedfarhan.start.Domains.mobiles_domain.Mobile;
+import com.example.mohammedfarhan.start.Domains.vehicles_domain.Cars;
+import com.example.mohammedfarhan.start.Domains.vehicles_domain.Cycles;
+import com.example.mohammedfarhan.start.Domains.vehicles_domain.TwoWheel;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -17,15 +21,17 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
 
-import com.example.mohammedfarhan.start.Domains.Data;
-
 public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
     public static final String DATABASE_PATH = "/data/data/com.example.mohammedfarhan.start/databases/";
     private static final String DATABASE_NAME = "ckm_db.db";
     private static final int DATABASE_VERSION = 1;
 
-	private static Dao<Data,Long> dataDAO=null;
-	private static Dao<TwoWheeler,Long> twoWheelerDAO=null;
+	private static Dao<Mobile,Long> mobileDAO =null;
+	private static Dao<Cars,Long> carsDao =null;
+    private static Dao<TwoWheel,Long> twoWheelDao =null;
+    private static Dao<Cycles,Long> cycleDao =null;
+    private static Dao<Laptop,Long> laptopDao =null;
+
 
     public DataBaseHelper(Context context) {
         super(context, DATABASE_PATH + DATABASE_NAME, null, DATABASE_VERSION);
@@ -138,36 +144,81 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
     }
 
 
-	public Dao<Data, Long> getDataDAO() throws SQLException{
+	public Dao<Mobile, Long> getMobileDAO() throws SQLException{
 
 		try
 		{
-			if (dataDAO == null)
+			if (mobileDAO == null)
 			{
-                dataDAO = DaoManager.createDao(connectionSource, Data.class);
+                mobileDAO = DaoManager.createDao(connectionSource, Mobile.class);
 			}
 	}catch (SQLException e)
 		{
 		e.printStackTrace();		}
-	return dataDAO;
+	return mobileDAO;
 	}
 
 
-    public Dao<TwoWheeler, Long> getTwoWheelerDAO() throws SQLException{
+    public Dao<Cars, Long> getCarsDao() throws SQLException{
 
         try
         {
-            if (twoWheelerDAO == null)
+            if (carsDao == null)
             {
-                twoWheelerDAO = DaoManager.createDao(connectionSource, TwoWheeler.class);
+                carsDao = DaoManager.createDao(connectionSource, Cars.class);
             }
         }catch (SQLException e)
         {
             e.printStackTrace();		}
-        return twoWheelerDAO;
+        return carsDao;
+    }
+
+    public Dao<TwoWheel, Long> getTwoWheelDao() throws SQLException{
+
+        try
+        {
+            if (twoWheelDao == null)
+            {
+                twoWheelDao = DaoManager.createDao(connectionSource, TwoWheel.class);
+            }
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return twoWheelDao;
     }
 
 
+    public Dao<Cycles, Long> getCycleDao() throws SQLException{
+
+        try
+        {
+            if (cycleDao == null)
+            {
+                cycleDao = DaoManager.createDao(connectionSource, Cycles.class);
+            }
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return cycleDao;
+    }
+
+
+    public Dao<Laptop, Long> getLaptopDao() throws SQLException{
+
+        try
+        {
+            if (laptopDao == null)
+            {
+                laptopDao = DaoManager.createDao(connectionSource, Laptop.class);
+            }
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return laptopDao;
+    }
 //	public Dao<PersonOfInterest, Long> getPOIDao() throws SQLException
 //	{
 //		try

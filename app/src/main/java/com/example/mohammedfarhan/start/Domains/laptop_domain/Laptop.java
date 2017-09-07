@@ -1,4 +1,4 @@
-package com.example.mohammedfarhan.start.Domains;
+package com.example.mohammedfarhan.start.Domains.laptop_domain;
 
 /**
  * Created by Mohammed Farhan on 22-07-2017.
@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Created by Mohammed Farhan on 27-06-2017.
  */
 @DatabaseTable(tableName = "Data_Table")
-public class Data implements Serializable {
+public class Laptop implements Serializable {
 
 
     @DatabaseField(columnName = "id",generatedId = true)
@@ -64,16 +64,16 @@ public class Data implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Data)) return false;
+        if (!(o instanceof Laptop)) return false;
 
-        Data data = (Data) o;
+        Laptop mobile = (Laptop) o;
 
-        if (getId() != null ? !getId().equals(data.getId()) : data.getId() != null) return false;
-        if (getMobilename() != null ? !getMobilename().equals(data.getMobilename()) : data.getMobilename() != null)
+        if (getId() != null ? !getId().equals(mobile.getId()) : mobile.getId() != null) return false;
+        if (getMobilename() != null ? !getMobilename().equals(mobile.getMobilename()) : mobile.getMobilename() != null)
             return false;
-        if (getMobileprice() != null ? !getMobileprice().equals(data.getMobileprice()) : data.getMobileprice() != null)
+        if (getMobileprice() != null ? !getMobileprice().equals(mobile.getMobileprice()) : mobile.getMobileprice() != null)
             return false;
-        return getMobileimageurl() != null ? getMobileimageurl().equals(data.getMobileimageurl()) : data.getMobileimageurl() == null;
+        return getMobileimageurl() != null ? getMobileimageurl().equals(mobile.getMobileimageurl()) : mobile.getMobileimageurl() == null;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Data implements Serializable {
 
     @Override
     public String toString() {
-        return "Data{" +
+        return "Mobile{" +
                 "id=" + id +
                 ", mobilename='" + mobilename + '\'' +
                 ", mobileprice='" + mobileprice + '\'' +

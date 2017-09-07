@@ -51,5 +51,9 @@ dependencies {
 
     /*Material Spinner*/
     compile 'com.jaredrummler:material-spinner:1.1.0'
+
+    /*Circular Imageview*/
+    compile 'com.mikhaellopez:circularimageview:3.0.2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
 }

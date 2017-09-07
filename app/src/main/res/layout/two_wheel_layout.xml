@@ -8,24 +8,23 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/card_background_white">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mobileId"
+            android:id="@+id/twoWheelId"
             android:visibility="gone"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/mobileImage"
+            android:id="@+id/twoWheelImage"
             android:src="@drawable/white"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mobileName"
+            android:id="@+id/twoWheelName"
             tools:text="Samsung J7"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -33,10 +32,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/mobilePrice"
+            android:id="@+id/twoWheelPrice"
             tools:text="2500"
             android:textStyle="bold"
             android:layout_gravity="center"/>
     </LinearLayout>
-
 </LinearLayout>

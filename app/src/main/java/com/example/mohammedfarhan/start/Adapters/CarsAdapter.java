@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.mohammedfarhan.start.Domains.TwoWheeler;
-import com.example.mohammedfarhan.start.Domains.TwoWheeler;
+import com.example.mohammedfarhan.start.Domains.vehicles_domain.Cars;
 import com.example.mohammedfarhan.start.R;
 import com.squareup.picasso.Picasso;
 
@@ -19,15 +18,15 @@ import java.util.ArrayList;
  * Created by Mohammed Farhan on 22-07-2017.
  */
 
-public class TwoWheelerAdapter extends RecyclerView.Adapter<TwoWheelerAdapter.ViewHolder> {
+public class CarsAdapter extends RecyclerView.Adapter<CarsAdapter.ViewHolder> {
 
 
     Context mcontext;
-    ArrayList<TwoWheeler> mTwoWheeler;
-    public TwoWheelerAdapter(Context context, ArrayList<TwoWheeler> TwoWheeler){
+    ArrayList<Cars> mCars;
+    public CarsAdapter(Context context, ArrayList<Cars> Cars){
 
         this.mcontext=context;
-        this.mTwoWheeler=TwoWheeler;
+        this.mCars = Cars;
     }
 
 
@@ -56,7 +55,7 @@ public class TwoWheelerAdapter extends RecyclerView.Adapter<TwoWheelerAdapter.Vi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.towheeler_adapter, parent, false);
+                .inflate(R.layout.cars_layout, parent, false);
         ViewHolder viewholder=new ViewHolder(view);
         return  viewholder;
     }
@@ -64,20 +63,20 @@ public class TwoWheelerAdapter extends RecyclerView.Adapter<TwoWheelerAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        TwoWheeler twoWheeler=mTwoWheeler.get(position);
-        holder.twoWheelerIdTV.setText(String.valueOf(twoWheeler.getId()));
-        holder.twoWheelerName.setText(twoWheeler.getVehiclename());
-        holder.twoWheelerPrice.setText(twoWheeler.getVehicleprice());
-        Picasso.with(mcontext).load(twoWheeler.getVehicleimageurl()).placeholder(mcontext.getResources()
+        Cars cars = mCars.get(position);
+        holder.twoWheelerIdTV.setText(String.valueOf(cars.getId()));
+        holder.twoWheelerName.setText(cars.getCarName());
+        holder.twoWheelerPrice.setText(cars.getCarPrice());
+        Picasso.with(mcontext).load(cars.getCarImageUrl()).placeholder(mcontext.getResources()
                 .getDrawable(R.drawable.white)).error(mcontext.getResources().getDrawable(R.drawable.white))
-                .resize(200,200).centerCrop().into(holder.mobileIV);
+                .resize(100,100).centerCrop().into(holder.mobileIV);
 
 
-//        holder.t2.setText(TwoWheeler.getTwoWheeler());
+//        holder.t2.setText(Cars.getTwoWheeler());
     }
 
     @Override
     public int getItemCount() {
-        return mTwoWheeler.size();
+        return mCars.size();
     }
 }

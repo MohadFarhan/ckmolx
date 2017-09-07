@@ -12,12 +12,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import com.example.mohammedfarhan.start.Adapters.DataAdapter;
-import com.example.mohammedfarhan.start.Adapters.TwoWheelerAdapter;
-import com.example.mohammedfarhan.start.DAO.DataDAO;
-import com.example.mohammedfarhan.start.DAO.TwoWheelerDAO;
-import com.example.mohammedfarhan.start.Domains.Data;
-import com.example.mohammedfarhan.start.Domains.TwoWheeler;
+import com.example.mohammedfarhan.start.Adapters.MobileAdapter;
+import com.example.mohammedfarhan.start.Adapters.CarsAdapter;
+import com.example.mohammedfarhan.start.Adapters.TwoWheelsAdapter;
+import com.example.mohammedfarhan.start.DAO.mobiles_dao.MobileDAO;
+import com.example.mohammedfarhan.start.DAO.vehicles_dao.CarsDAO;
+import com.example.mohammedfarhan.start.DAO.vehicles_dao.TwoWheelDAO;
+import com.example.mohammedfarhan.start.Domains.mobiles_domain.Mobile;
+import com.example.mohammedfarhan.start.Domains.vehicles_domain.Cars;
+import com.example.mohammedfarhan.start.Domains.vehicles_domain.TwoWheel;
 import com.example.mohammedfarhan.start.R;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
@@ -26,17 +29,18 @@ public class MainActivity extends AppCompatActivity {
 
     public TextView locationTV;
     public ImageView gpsIconIMV;
-    ArrayList<Data> mdata;
-    ArrayList<TwoWheeler> mtwowheeler;
-    Data data;
+    ArrayList<Mobile> mdata;
+    ArrayList<Cars> carsArrayList;
+    ArrayList<TwoWheel> mtwowheeler;
+    Mobile mobile;
 
-    TwoWheelerAdapter twoWheelerAdapter;
+    CarsAdapter carsAdapter;
     public LocationManager locationManager;
     String server_response;
     public Animation animation;
 
     public Double latitude, longitude;
-    RecyclerView mobileRecyclerView,twoWheelersRecylerView;
+    RecyclerView mobileRecyclerView, carRecylerView,twoWheelRecyclerView;
 
     String road;
     LinearLayoutManager mLayoutManager;
@@ -51,28 +55,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        locationTV = (TextView) findViewById(R.id.locationTV);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        mdata=new DataDAO(MainActivity.this).getAllData();
-        DataAdapter dataAdapter=new DataAdapter(this,mdata);
+        mdata=new MobileDAO(MainActivity.this).getAllMobile();
+        MobileAdapter mobileAdapter =new MobileAdapter(this,mdata);
 
         mobileRecyclerView = (RecyclerView) findViewById(R.id.mobilesrv);
         mobileRecyclerView.setHasFixedSize(true);
         mobileRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mobileRecyclerView.smoothScrollToPosition(1);
-        mobileRecyclerView.setAdapter(dataAdapter);
+        mobileRecyclerView.setAdapter(mobileAdapter);
 
 
-        mtwowheeler=new TwoWheelerDAO(MainActivity.this).getAllTwoWheeler();
-        twoWheelerAdapter=new TwoWheelerAdapter(MainActivity.this,mtwowheeler);
-        twoWheelersRecylerView=(RecyclerView)findViewById(R.id.twoWheelersrv);
-        twoWheelersRecylerView.setHasFixedSize(true);
-        twoWheelersRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        twoWheelersRecylerView.setAdapter(twoWheelerAdapter);
+        carsArrayList =new CarsDAO(MainActivity.this).getAllTwoWheeler();
+        carsAdapter =new CarsAdapter(MainActivity.this, carsArrayList);
+        carRecylerView =(RecyclerView)findViewById(R.id.carsRV);
+        carRecylerView.setHasFixedSize(true);
+        carRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        carRecylerView.setAdapter(carsAdapter);
 
-        materialSpinner=(MaterialSpinner)findViewById(R.id.materialSpinner);
-        materialSpinner.setItems("Categories","All Categories","Mobiles","Cars","Two Wheelers","Four Wheelers");
+
+        mtwowheeler=new TwoWheelDAO(this).getAllTwoWheeler();
+
+        twoWheelRecyclerView = (RecyclerView) findViewById(R.id.twoWheelRV);
+        twoWheelRecyclerView.setHasFixedSize(true);
+        twoWheelRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        twoWheelRecyclerView.smoothScrollToPosition(1);
+        TwoWheelsAdapter twoWheelsAdapter=new TwoWheelsAdapter(this,mtwowheeler);
+        twoWheelRecyclerView.setAdapter(twoWheelsAdapter);
+
+//        materialSpinner=(MaterialSpinner)findViewById(R.id.materialSpinner);
+//        materialSpinner.setItems("Categories","All Categories","Mobiles","Cars","Two Wheelers","Four Wheelers");
+
 
     }
 }

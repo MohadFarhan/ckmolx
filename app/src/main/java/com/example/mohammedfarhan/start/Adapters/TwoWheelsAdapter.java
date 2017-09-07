@@ -8,39 +8,38 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mohammedfarhan.start.Domains.vehicles_domain.TwoWheel;
 import com.example.mohammedfarhan.start.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import com.example.mohammedfarhan.start.Domains.Data;
-
 /**
  * Created by Mohammed Farhan on 22-07-2017.
  */
 
-public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
+public class TwoWheelsAdapter extends RecyclerView.Adapter<TwoWheelsAdapter.ViewHolder> {
 
 
     Context mcontext;
-    ArrayList<Data> mdata;
-    public DataAdapter(Context context,ArrayList<Data> data){
+    ArrayList<TwoWheel> mTwoWheel;
+    public TwoWheelsAdapter(Context context, ArrayList<TwoWheel> TwoWheel){
 
         this.mcontext=context;
-        this.mdata=data;
+        this.mTwoWheel = TwoWheel;
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mobileName,mobilePrice,mobileIdTV;
+        TextView twoWheelerName, twoWheelerPrice,twoWheelerIdTV;
         ImageView mobileIV;
         public ViewHolder(View itemView) {
             super(itemView);
-            mobileIdTV=(TextView)itemView.findViewById(R.id.mobileId);
-            mobilePrice=(TextView)itemView.findViewById(R.id.mobilePrice);
-            mobileName=(TextView)itemView.findViewById(R.id.mobileName);
-           mobileIV=(ImageView)itemView.findViewById(R.id.mobileImage);
+            twoWheelerIdTV=(TextView)itemView.findViewById(R.id.twoWheelId);
+            twoWheelerPrice =(TextView)itemView.findViewById(R.id.twoWheelPrice);
+            twoWheelerName =(TextView)itemView.findViewById(R.id.twoWheelName);
+           mobileIV=(ImageView)itemView.findViewById(R.id.twoWheelImage);
 
 //           itemView.setOnClickListener(new View.OnClickListener() {
 //               @Override
@@ -56,7 +55,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.data_adapter, parent, false);
+                .inflate(R.layout.two_wheel_layout, parent, false);
         ViewHolder viewholder=new ViewHolder(view);
         return  viewholder;
     }
@@ -64,20 +63,20 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        Data data=mdata.get(position);
-        holder.mobileIdTV.setText(String.valueOf(data.getId()));
-        holder.mobileName.setText(data.getMobilename());
-        holder.mobilePrice.setText(data.getMobileprice());
-        Picasso.with(mcontext).load(data.getMobileimageurl()).placeholder(mcontext.getResources()
+        TwoWheel cars = mTwoWheel.get(position);
+        holder.twoWheelerIdTV.setText(String.valueOf(cars.getId()));
+        holder.twoWheelerName.setText(cars.getTwoWheelname());
+        holder.twoWheelerPrice.setText(cars.getTwoWheelprice());
+        Picasso.with(mcontext).load(cars.getTwoWheelimageurl()).placeholder(mcontext.getResources()
                 .getDrawable(R.drawable.white)).error(mcontext.getResources().getDrawable(R.drawable.white))
-                .resize(200,200).centerCrop().into(holder.mobileIV);
+                .resize(100,100).centerCrop().into(holder.mobileIV);
 
 
-//        holder.t2.setText(data.getData());
+//        holder.t2.setText(TwoWheel.getTwoWheeler());
     }
 
     @Override
     public int getItemCount() {
-        return mdata.size();
+        return mTwoWheel.size();
     }
 }

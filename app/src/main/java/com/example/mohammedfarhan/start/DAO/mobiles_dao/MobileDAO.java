@@ -1,4 +1,4 @@
-package com.example.mohammedfarhan.start.DAO;
+package com.example.mohammedfarhan.start.DAO.mobiles_dao;
 
 /**
  * Created by Mohammed Farhan on 22-07-2017.
@@ -15,13 +15,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.mohammedfarhan.start.Domains.Data;
+import com.example.mohammedfarhan.start.Domains.mobiles_domain.Mobile;
 import com.example.mohammedfarhan.start.Utils.DataBaseHelper;
 
-public class DataDAO {
+public class MobileDAO {
 
     public static final String COL_ID = "Id";
-    public static final String COL_Data = "Data";
+    public static final String COL_Data = "Mobile";
     public static final String COL_DATE = "Date";
     public static final String COL_IMAGE = "Image";
     public static final String COL_VIDEO = "Video";
@@ -30,19 +30,19 @@ public class DataDAO {
     DataBaseHelper dbHelper;
     Context context;
 
-    public DataDAO(Context context) {
+    public MobileDAO(Context context) {
         this.context = context;
     }
 
 
-    public ArrayList<Data> getAllData() {
+    public ArrayList<Mobile> getAllMobile() {
         try {
             dbHelper = OpenHelperManager.getHelper(context, DataBaseHelper.class);
-            Dao<Data, Long> DataDAO = dbHelper.getDataDAO();
-            List<Data> Data = DataDAO.queryForAll();
-            ArrayList<Data> DataList = new ArrayList<>();
-            DataList.addAll(Data);
-            return DataList;
+            Dao<Mobile, Long> DataDAO = dbHelper.getMobileDAO();
+            List<Mobile> Mobile = DataDAO.queryForAll();
+            ArrayList<Mobile> mobileList = new ArrayList<>();
+            mobileList.addAll(Mobile);
+            return mobileList;
         } catch (SQLException e) {
             Log.e("nk", Log.getStackTraceString(e));
             return null;
@@ -50,12 +50,25 @@ public class DataDAO {
     }
 
 
-    public Data addUser(Data userObj) {
+    public Mobile getMobileById(long userId) {
         try {
             dbHelper = OpenHelperManager.getHelper(context, DataBaseHelper.class);
-            Dao<Data, Long> DataDAO = dbHelper.getDataDAO();
+            Dao<Mobile, Long> mobileDAO = dbHelper.getMobileDAO();
+            Mobile mobile = mobileDAO.queryForId(userId);
+            OpenHelperManager.releaseHelper();
+            return mobile;
+        } catch (SQLException e) {
+            Log.e("nk", Log.getStackTraceString(e));
+            return null;
+        }
+    }
+
+    public Mobile addUser(Mobile userObj) {
+        try {
+            dbHelper = OpenHelperManager.getHelper(context, DataBaseHelper.class);
+            Dao<Mobile, Long> DataDAO = dbHelper.getMobileDAO();
             DataDAO.createOrUpdate(userObj);
-            Data addDatas = DataDAO.queryForId(Long.valueOf(userObj.getId()));
+            Mobile addDatas = DataDAO.queryForId(Long.valueOf(userObj.getId()));
             OpenHelperManager.releaseHelper();
             return addDatas;
         } catch (SQLException e) {
@@ -67,7 +80,7 @@ public class DataDAO {
     public long getDataCount() {
         try {
             dbHelper = OpenHelperManager.getHelper(context, DataBaseHelper.class);
-            Dao<Data, Long> DataDAO = (Dao<Data, Long>) dbHelper.getDataDAO();
+            Dao<Mobile, Long> DataDAO = (Dao<Mobile, Long>) dbHelper.getMobileDAO();
             long number = DataDAO.countOf();
             OpenHelperManager.releaseHelper();
             return number;

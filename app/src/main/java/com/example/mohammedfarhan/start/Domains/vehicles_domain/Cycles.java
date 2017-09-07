@@ -1,4 +1,4 @@
-package com.example.mohammedfarhan.start.Domains;
+package com.example.mohammedfarhan.start.Domains.vehicles_domain;
 
 /**
  * Created by Mohammed Farhan on 22-07-2017.
@@ -14,7 +14,7 @@ import java.io.Serializable;
  * Created by Mohammed Farhan on 27-06-2017.
  */
 @DatabaseTable(tableName = "Two_Wheeler")
-public class TwoWheeler implements Serializable {
+public class Cycles implements Serializable {
 
 
     @DatabaseField(columnName = "id", generatedId = true)
@@ -64,9 +64,9 @@ public class TwoWheeler implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TwoWheeler)) return false;
+        if (!(o instanceof Cycles)) return false;
 
-        TwoWheeler that = (TwoWheeler) o;
+        Cycles that = (Cycles) o;
 
         if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
         if (getVehiclename() != null ? !getVehiclename().equals(that.getVehiclename()) : that.getVehiclename() != null)
@@ -87,7 +87,7 @@ public class TwoWheeler implements Serializable {
 
     @Override
     public String toString() {
-        return "TwoWheeler{" +
+        return "Cars{" +
                 "id=" + id +
                 ", vehiclename='" + vehiclename + '\'' +
                 ", vehicleprice='" + vehicleprice + '\'' +
