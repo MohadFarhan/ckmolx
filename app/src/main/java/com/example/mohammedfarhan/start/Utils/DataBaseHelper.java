@@ -4,6 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.mohammedfarhan.start.Domains.home_appliances.Fridges;
+import com.example.mohammedfarhan.start.Domains.home_appliances.Furnitures;
+import com.example.mohammedfarhan.start.Domains.home_appliances.Television;
+import com.example.mohammedfarhan.start.Domains.home_appliances.WashingMachine;
 import com.example.mohammedfarhan.start.Domains.laptop_domain.Laptop;
 import com.example.mohammedfarhan.start.Domains.mobiles_domain.Mobile;
 import com.example.mohammedfarhan.start.Domains.vehicles_domain.Cars;
@@ -31,7 +35,10 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
     private static Dao<TwoWheel,Long> twoWheelDao =null;
     private static Dao<Cycles,Long> cycleDao =null;
     private static Dao<Laptop,Long> laptopDao =null;
-
+    private static Dao<Television,Long> televisionDao =null;
+    private static Dao<Fridges,Long> fridgeDao =null;
+    private static Dao<Furnitures,Long> furnitureDao =null;
+    private static Dao<WashingMachine,Long> washingMachineDao =null;
 
     public DataBaseHelper(Context context) {
         super(context, DATABASE_PATH + DATABASE_NAME, null, DATABASE_VERSION);
@@ -219,6 +226,73 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
         }
         return laptopDao;
     }
+
+
+
+    public Dao<Television, Long> getTelevisionDao() throws SQLException{
+
+        try
+        {
+            if (televisionDao == null)
+            {
+                televisionDao = DaoManager.createDao(connectionSource, Television.class);
+            }
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return televisionDao;
+    }
+
+
+
+    public Dao<Fridges, Long> getFridgeDao() throws SQLException{
+
+        try
+        {
+            if (fridgeDao == null)
+            {
+                fridgeDao = DaoManager.createDao(connectionSource, Fridges.class);
+            }
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return fridgeDao;
+    }
+
+
+    public Dao<WashingMachine, Long> getWashingMachineDao() throws SQLException{
+
+        try
+        {
+            if (washingMachineDao == null)
+            {
+                washingMachineDao = DaoManager.createDao(connectionSource, WashingMachine.class);
+            }
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return washingMachineDao;
+    }
+
+
+    public Dao<Furnitures, Long> getFurnitureDao() throws SQLException{
+
+        try
+        {
+            if (furnitureDao == null)
+            {
+                furnitureDao = DaoManager.createDao(connectionSource, Furnitures.class);
+            }
+        }catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return furnitureDao;
+    }
+
 //	public Dao<PersonOfInterest, Long> getPOIDao() throws SQLException
 //	{
 //		try

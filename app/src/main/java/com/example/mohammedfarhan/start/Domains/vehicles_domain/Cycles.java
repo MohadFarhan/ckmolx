@@ -13,21 +13,21 @@ import java.io.Serializable;
 /**
  * Created by Mohammed Farhan on 27-06-2017.
  */
-@DatabaseTable(tableName = "Two_Wheeler")
+@DatabaseTable(tableName = "Cycles")
 public class Cycles implements Serializable {
 
 
     @DatabaseField(columnName = "id", generatedId = true)
     private Long id;
 
-    @DatabaseField(columnName = "vehiclename")
-    private String vehiclename;
+    @DatabaseField(columnName = "cyclename")
+    private String cyclename;
 
-    @DatabaseField(columnName = "vehicleprice")
-    private String vehicleprice;
+    @DatabaseField(columnName = "cycleprice")
+    private String cycleprice;
 
-    @DatabaseField(columnName = "vehicleimageurl")
-    private String vehicleimageurl;
+    @DatabaseField(columnName = "cycleimageurl")
+    private String cycleimageurl;
 
     public Long getId() {
         return id;
@@ -37,28 +37,28 @@ public class Cycles implements Serializable {
         this.id = id;
     }
 
-    public String getVehiclename() {
-        return vehiclename;
+    public String getCyclename() {
+        return cyclename;
     }
 
-    public void setVehiclename(String vehiclename) {
-        this.vehiclename = vehiclename;
+    public void setCyclename(String cyclename) {
+        this.cyclename = cyclename;
     }
 
-    public String getVehicleprice() {
-        return vehicleprice;
+    public String getCycleprice() {
+        return cycleprice;
     }
 
-    public void setVehicleprice(String vehicleprice) {
-        this.vehicleprice = vehicleprice;
+    public void setCycleprice(String cycleprice) {
+        this.cycleprice = cycleprice;
     }
 
-    public String getVehicleimageurl() {
-        return vehicleimageurl;
+    public String getCycleimageurl() {
+        return cycleimageurl;
     }
 
-    public void setVehicleimageurl(String vehicleimageurl) {
-        this.vehicleimageurl = vehicleimageurl;
+    public void setCycleimageurl(String cycleimageurl) {
+        this.cycleimageurl = cycleimageurl;
     }
 
     @Override
@@ -69,19 +69,19 @@ public class Cycles implements Serializable {
         Cycles that = (Cycles) o;
 
         if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
-        if (getVehiclename() != null ? !getVehiclename().equals(that.getVehiclename()) : that.getVehiclename() != null)
+        if (getCyclename() != null ? !getCyclename().equals(that.getCyclename()) : that.getCyclename() != null)
             return false;
-        if (getVehicleprice() != null ? !getVehicleprice().equals(that.getVehicleprice()) : that.getVehicleprice() != null)
+        if (getCycleprice() != null ? !getCycleprice().equals(that.getCycleprice()) : that.getCycleprice() != null)
             return false;
-        return getVehicleimageurl() != null ? getVehicleimageurl().equals(that.getVehicleimageurl()) : that.getVehicleimageurl() == null;
+        return getCycleimageurl() != null ? getCycleimageurl().equals(that.getCycleimageurl()) : that.getCycleimageurl() == null;
     }
 
     @Override
     public int hashCode() {
         int result = getId() != null ? getId().hashCode() : 0;
-        result = 31 * result + (getVehiclename() != null ? getVehiclename().hashCode() : 0);
-        result = 31 * result + (getVehicleprice() != null ? getVehicleprice().hashCode() : 0);
-        result = 31 * result + (getVehicleimageurl() != null ? getVehicleimageurl().hashCode() : 0);
+        result = 31 * result + (getCyclename() != null ? getCyclename().hashCode() : 0);
+        result = 31 * result + (getCycleprice() != null ? getCycleprice().hashCode() : 0);
+        result = 31 * result + (getCycleimageurl() != null ? getCycleimageurl().hashCode() : 0);
         return result;
     }
 
@@ -89,9 +89,9 @@ public class Cycles implements Serializable {
     public String toString() {
         return "Cars{" +
                 "id=" + id +
-                ", vehiclename='" + vehiclename + '\'' +
-                ", vehicleprice='" + vehicleprice + '\'' +
-                ", vehicleimageurl='" + vehicleimageurl + '\'' +
+                ", cyclename='" + cyclename + '\'' +
+                ", cycleprice='" + cycleprice + '\'' +
+                ", cycleimageurl='" + cycleimageurl + '\'' +
                 '}';
     }
 }

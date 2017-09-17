@@ -12,14 +12,29 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import com.example.mohammedfarhan.start.Adapters.CyclesAdapter;
+import com.example.mohammedfarhan.start.Adapters.FridgesAdapter;
+import com.example.mohammedfarhan.start.Adapters.FurnituresAdapter;
 import com.example.mohammedfarhan.start.Adapters.MobileAdapter;
 import com.example.mohammedfarhan.start.Adapters.CarsAdapter;
+import com.example.mohammedfarhan.start.Adapters.TelevisionAdapter;
 import com.example.mohammedfarhan.start.Adapters.TwoWheelsAdapter;
+import com.example.mohammedfarhan.start.Adapters.WashingMachineAdapter;
+import com.example.mohammedfarhan.start.DAO.home_appliances_dao.FridgesDAO;
+import com.example.mohammedfarhan.start.DAO.home_appliances_dao.FurnituresDAO;
+import com.example.mohammedfarhan.start.DAO.home_appliances_dao.TelevisionDAO;
+import com.example.mohammedfarhan.start.DAO.home_appliances_dao.WashingMachineDAO;
 import com.example.mohammedfarhan.start.DAO.mobiles_dao.MobileDAO;
 import com.example.mohammedfarhan.start.DAO.vehicles_dao.CarsDAO;
+import com.example.mohammedfarhan.start.DAO.vehicles_dao.CyclesDAO;
 import com.example.mohammedfarhan.start.DAO.vehicles_dao.TwoWheelDAO;
+import com.example.mohammedfarhan.start.Domains.home_appliances.Fridges;
+import com.example.mohammedfarhan.start.Domains.home_appliances.Furnitures;
+import com.example.mohammedfarhan.start.Domains.home_appliances.Television;
+import com.example.mohammedfarhan.start.Domains.home_appliances.WashingMachine;
 import com.example.mohammedfarhan.start.Domains.mobiles_domain.Mobile;
 import com.example.mohammedfarhan.start.Domains.vehicles_domain.Cars;
+import com.example.mohammedfarhan.start.Domains.vehicles_domain.Cycles;
 import com.example.mohammedfarhan.start.Domains.vehicles_domain.TwoWheel;
 import com.example.mohammedfarhan.start.R;
 import com.jaredrummler.materialspinner.MaterialSpinner;
@@ -32,15 +47,26 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Mobile> mdata;
     ArrayList<Cars> carsArrayList;
     ArrayList<TwoWheel> mtwowheeler;
+    ArrayList<Cycles> mcyles;
+    ArrayList<Television> televisions;
+    ArrayList<Fridges> fridges;
+    ArrayList<Furnitures> furnitures;
+    ArrayList<WashingMachine> washingMachines;
     Mobile mobile;
 
     CarsAdapter carsAdapter;
+    CyclesAdapter cyclesAdapter;
+    TelevisionAdapter televisionAdapter;
+    FurnituresAdapter furnituresAdapter;
+    FridgesAdapter fridgesAdapter;
+    WashingMachineAdapter washingMachineAdapter;
     public LocationManager locationManager;
     String server_response;
     public Animation animation;
 
     public Double latitude, longitude;
-    RecyclerView mobileRecyclerView, carRecylerView,twoWheelRecyclerView;
+    RecyclerView mobileRecyclerView, carRecylerView,twoWheelRecyclerView,cyclesRecyclerView,televisionRecyclerView,furnituresRecyclerView,
+    fridgesRecyclerView,washingMachineRecyclerView;
 
     String road;
     LinearLayoutManager mLayoutManager;
@@ -83,6 +109,53 @@ public class MainActivity extends AppCompatActivity {
         twoWheelRecyclerView.smoothScrollToPosition(1);
         TwoWheelsAdapter twoWheelsAdapter=new TwoWheelsAdapter(this,mtwowheeler);
         twoWheelRecyclerView.setAdapter(twoWheelsAdapter);
+
+
+        mcyles=new CyclesDAO(this).getAllCycles();
+        cyclesRecyclerView=(RecyclerView)findViewById(R.id.cyclesRV);
+        cyclesRecyclerView.setHasFixedSize(true);
+        cyclesRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        twoWheelRecyclerView.smoothScrollToPosition(1);
+        cyclesAdapter=new CyclesAdapter(this,mcyles);
+        cyclesRecyclerView.setAdapter(cyclesAdapter);
+
+        televisions=new TelevisionDAO(this).getAllTelevision();
+        televisionRecyclerView=(RecyclerView)findViewById(R.id.tvRV);
+        televisionRecyclerView.setHasFixedSize(true);
+        televisionRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        televisionRecyclerView.smoothScrollToPosition(1);
+        televisionAdapter=new TelevisionAdapter(this,televisions);
+        televisionRecyclerView.setAdapter(televisionAdapter);
+
+
+
+        fridges=new FridgesDAO(this).getAllFridges();
+        fridgesRecyclerView=(RecyclerView)findViewById(R.id.fridgesRV);
+        fridgesRecyclerView.setHasFixedSize(true);
+        fridgesRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        fridgesRecyclerView.smoothScrollToPosition(1);
+        fridgesAdapter=new FridgesAdapter(this,fridges);
+        fridgesRecyclerView.setAdapter(fridgesAdapter);
+
+        washingMachines=new WashingMachineDAO(this).getAllWashingMachine();
+        washingMachineRecyclerView=(RecyclerView)findViewById(R.id.washingMachineRV);
+        washingMachineRecyclerView.setHasFixedSize(true);
+        washingMachineRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        washingMachineRecyclerView.smoothScrollToPosition(1);
+        washingMachineAdapter=new WashingMachineAdapter(this,washingMachines);
+        washingMachineRecyclerView.setAdapter(washingMachineAdapter);
+
+
+
+        furnitures=new FurnituresDAO(this).getAllFurnitures();
+        furnituresRecyclerView=(RecyclerView)findViewById(R.id.furnituresRV);
+        furnituresRecyclerView.setHasFixedSize(true);
+        furnituresRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        furnituresRecyclerView.smoothScrollToPosition(1);
+        furnituresAdapter=new FurnituresAdapter(this,furnitures);
+        furnituresRecyclerView.setAdapter(furnituresAdapter);
+
+
 
 //        materialSpinner=(MaterialSpinner)findViewById(R.id.materialSpinner);
 //        materialSpinner.setItems("Categories","All Categories","Mobiles","Cars","Two Wheelers","Four Wheelers");
