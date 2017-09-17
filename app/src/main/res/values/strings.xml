@@ -3,4 +3,13 @@
     <string name="logintext">Please Enter your 10 digit mobile number</string>
     <string name="loginbutton">Submit</string>
     <string name="locationfetchingtext">Fetching your current location. Make sure your device is connected to internet and GPS is enabled</string>
+
+    <string name="adds">Adds</string>
+    <string name="sell">Sell</string>
+    <string name="myadd">My Adds</string>
+    <string name="profile">Profile</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_search"
+        android:title="@string/adds"
+        app:showAsAction="always|ifRoom"
+        android:icon="@drawable/searchadds" />
+
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/sell"
+        android:icon="@drawable/sell" />
+
+
+    <item android:id="@+id/action_navigation"
+        android:title="@string/myadd"
+        android:icon="@drawable/myadds" />
+
+    <item android:id="@+id/action_profile"
+        android:title="@string/profile"
+        android:icon="@drawable/profile" />
+
+</menu>

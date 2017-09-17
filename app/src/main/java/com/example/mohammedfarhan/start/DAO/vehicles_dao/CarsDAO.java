@@ -34,7 +34,7 @@ public class CarsDAO {
     }
 
 
-    public ArrayList<Cars> getAllTwoWheeler() {
+    public ArrayList<Cars> getAllCars() {
         try {
             dbHelper = OpenHelperManager.getHelper(context, DataBaseHelper.class);
             Dao<Cars, Long> TwoWheelerDAO = dbHelper.getCarsDao();

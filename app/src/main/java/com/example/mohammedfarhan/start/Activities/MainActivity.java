@@ -2,6 +2,11 @@ package com.example.mohammedfarhan.start.Activities;
 
 import android.content.Context;
 import android.location.LocationManager;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.example.mohammedfarhan.start.Adapters.CyclesAdapter;
 import com.example.mohammedfarhan.start.Adapters.FridgesAdapter;
@@ -37,130 +43,82 @@ import com.example.mohammedfarhan.start.Domains.vehicles_domain.Cars;
 import com.example.mohammedfarhan.start.Domains.vehicles_domain.Cycles;
 import com.example.mohammedfarhan.start.Domains.vehicles_domain.TwoWheel;
 import com.example.mohammedfarhan.start.R;
+import com.example.mohammedfarhan.start.fragments.AddsFragment;
+import com.example.mohammedfarhan.start.fragments.MyAddsFragment;
+import com.example.mohammedfarhan.start.fragments.MyChatsFragment;
+import com.example.mohammedfarhan.start.fragments.MyProfileFragment;
+import com.example.mohammedfarhan.start.fragments.SellFragment;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    public TextView locationTV;
-    public ImageView gpsIconIMV;
-    ArrayList<Mobile> mdata;
-    ArrayList<Cars> carsArrayList;
-    ArrayList<TwoWheel> mtwowheeler;
-    ArrayList<Cycles> mcyles;
-    ArrayList<Television> televisions;
-    ArrayList<Fridges> fridges;
-    ArrayList<Furnitures> furnitures;
-    ArrayList<WashingMachine> washingMachines;
-    Mobile mobile;
-
-    CarsAdapter carsAdapter;
-    CyclesAdapter cyclesAdapter;
-    TelevisionAdapter televisionAdapter;
-    FurnituresAdapter furnituresAdapter;
-    FridgesAdapter fridgesAdapter;
-    WashingMachineAdapter washingMachineAdapter;
-    public LocationManager locationManager;
-    String server_response;
-    public Animation animation;
-
-    public Double latitude, longitude;
-    RecyclerView mobileRecyclerView, carRecylerView,twoWheelRecyclerView,cyclesRecyclerView,televisionRecyclerView,furnituresRecyclerView,
-    fridgesRecyclerView,washingMachineRecyclerView;
-
-    String road;
-    LinearLayoutManager mLayoutManager;
-
-    MaterialSpinner materialSpinner;
-    public final int MY_PERMISSIONS_REQUEST_LOCATION_GPS = 1;
-
-    String selectedCategory;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
 
-        mdata=new MobileDAO(MainActivity.this).getAllMobile();
-        MobileAdapter mobileAdapter =new MobileAdapter(this,mdata);
-
-        mobileRecyclerView = (RecyclerView) findViewById(R.id.mobilesrv);
-        mobileRecyclerView.setHasFixedSize(true);
-        mobileRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        mobileRecyclerView.smoothScrollToPosition(1);
-        mobileRecyclerView.setAdapter(mobileAdapter);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
 
-        carsArrayList =new CarsDAO(MainActivity.this).getAllTwoWheeler();
-        carsAdapter =new CarsAdapter(MainActivity.this, carsArrayList);
-        carRecylerView =(RecyclerView)findViewById(R.id.carsRV);
-        carRecylerView.setHasFixedSize(true);
-        carRecylerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        carRecylerView.setAdapter(carsAdapter);
-
-
-        mtwowheeler=new TwoWheelDAO(this).getAllTwoWheeler();
-
-        twoWheelRecyclerView = (RecyclerView) findViewById(R.id.twoWheelRV);
-        twoWheelRecyclerView.setHasFixedSize(true);
-        twoWheelRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        twoWheelRecyclerView.smoothScrollToPosition(1);
-        TwoWheelsAdapter twoWheelsAdapter=new TwoWheelsAdapter(this,mtwowheeler);
-        twoWheelRecyclerView.setAdapter(twoWheelsAdapter);
-
-
-        mcyles=new CyclesDAO(this).getAllCycles();
-        cyclesRecyclerView=(RecyclerView)findViewById(R.id.cyclesRV);
-        cyclesRecyclerView.setHasFixedSize(true);
-        cyclesRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        twoWheelRecyclerView.smoothScrollToPosition(1);
-        cyclesAdapter=new CyclesAdapter(this,mcyles);
-        cyclesRecyclerView.setAdapter(cyclesAdapter);
-
-        televisions=new TelevisionDAO(this).getAllTelevision();
-        televisionRecyclerView=(RecyclerView)findViewById(R.id.tvRV);
-        televisionRecyclerView.setHasFixedSize(true);
-        televisionRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        televisionRecyclerView.smoothScrollToPosition(1);
-        televisionAdapter=new TelevisionAdapter(this,televisions);
-        televisionRecyclerView.setAdapter(televisionAdapter);
-
-
-
-        fridges=new FridgesDAO(this).getAllFridges();
-        fridgesRecyclerView=(RecyclerView)findViewById(R.id.fridgesRV);
-        fridgesRecyclerView.setHasFixedSize(true);
-        fridgesRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        fridgesRecyclerView.smoothScrollToPosition(1);
-        fridgesAdapter=new FridgesAdapter(this,fridges);
-        fridgesRecyclerView.setAdapter(fridgesAdapter);
-
-        washingMachines=new WashingMachineDAO(this).getAllWashingMachine();
-        washingMachineRecyclerView=(RecyclerView)findViewById(R.id.washingMachineRV);
-        washingMachineRecyclerView.setHasFixedSize(true);
-        washingMachineRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        washingMachineRecyclerView.smoothScrollToPosition(1);
-        washingMachineAdapter=new WashingMachineAdapter(this,washingMachines);
-        washingMachineRecyclerView.setAdapter(washingMachineAdapter);
-
-
-
-        furnitures=new FurnituresDAO(this).getAllFurnitures();
-        furnituresRecyclerView=(RecyclerView)findViewById(R.id.furnituresRV);
-        furnituresRecyclerView.setHasFixedSize(true);
-        furnituresRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        furnituresRecyclerView.smoothScrollToPosition(1);
-        furnituresAdapter=new FurnituresAdapter(this,furnitures);
-        furnituresRecyclerView.setAdapter(furnituresAdapter);
-
+        tabLayout.getTabAt(0).setIcon(R.drawable.adddds);
+        tabLayout.getTabAt(1).setIcon(R.drawable.selladd);
+        tabLayout.getTabAt(2).setIcon(R.drawable.myaddddds);
+        tabLayout.getTabAt(3).setIcon(R.drawable.chat);
+        tabLayout.getTabAt(4).setIcon(R.drawable.profileuser);
 
 
 //        materialSpinner=(MaterialSpinner)findViewById(R.id.materialSpinner);
 //        materialSpinner.setItems("Categories","All Categories","Mobiles","Cars","Two Wheelers","Four Wheelers");
 
 
+    }
+
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new AddsFragment(), "Adds");
+        adapter.addFragment(new SellFragment(), "Sell");
+        adapter.addFragment(new MyAddsFragment(), "My Adds");
+        adapter.addFragment(new MyChatsFragment(), "Chats");
+        adapter.addFragment(new MyProfileFragment(), "Profile");
+        viewPager.setAdapter(adapter);
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 }
 //        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))

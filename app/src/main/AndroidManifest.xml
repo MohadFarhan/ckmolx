@@ -16,7 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".Activities.MainActivity" />
         <activity
             android:name=".Activities.LoginActivity"
@@ -27,7 +26,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.MobileAdDetailsActivity"></activity>
+        <activity android:name=".Activities.MobileAdDetailsActivity" />
+        <activity android:name=".Activities.CarsListActivity" />
+        <activity android:name=".Activities.CyclesListActivity" />
+        <activity android:name=".Activities.FridgesListActivity" />
+        <activity android:name=".Activities.FurnitureListActivity" />
+        <activity android:name=".Activities.MobileListActivity" />
+        <activity android:name=".Activities.TelevisionListActivity" />
+        <activity android:name=".Activities.TwoWheelsListActivity" />
+        <activity android:name=".Activities.WashingMachineListActivity"></activity>
     </application>
 
 </manifest>
